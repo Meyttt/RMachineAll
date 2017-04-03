@@ -27,6 +27,7 @@ public class DebuggerWindow extends Application{
 	static R_machine r_machine;
 	static WorkExchange workExchange;
 	static  Stage primaryStage;
+	static Stage currentStage;
 
 	public DebuggerWindow(WorkExchange workExchange, Stage primaryStage) {
 		DebuggerWindow.workExchange = workExchange;
@@ -125,7 +126,7 @@ public class DebuggerWindow extends Application{
 		});
 
 		exit.setOnAction(event -> {
-			System.exit(0);
+			currentStage.close();
 		});
 		grid.addRow(0, new Label("Вершина:"), outputNode);
 		grid.addRow(1, new Label("Условие:"), outputCondition);
@@ -141,10 +142,10 @@ public class DebuggerWindow extends Application{
 		Scene sceneFirst = new Scene(grid);
 //		primaryStage.setTitle("Обмен");
 //		primaryStage.setScene(sceneFirst);
-		Stage stage = new Stage();
-		stage.setScene(sceneFirst);
+		currentStage = new Stage();
+		currentStage.setScene(sceneFirst);
 //		primaryStage.initModality(Modality.WINDOW_MODAL);
-		stage.show();
+		currentStage.show();
 
 
 //		primaryStage.setTitle("Обмен");
