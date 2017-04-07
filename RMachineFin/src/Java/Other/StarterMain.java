@@ -29,7 +29,16 @@ public class StarterMain {
         this.tape = tape;
         start();
     }
+    public StarterMain(String filepath, boolean debugType, String tape) throws Exception {
+        this.filepath = filepath;
+        this.debugType = debugType;
+        this.tape = tape;
+    }
 
+    public void simpleStart() throws  Exception{
+        DebuggerRunner debuggerRunner = new DebuggerRunner(this.filepath,this.tape);
+        debuggerRunner.simpleStart();
+    }
     public String start() throws Exception {
         if(!this.debugType) {
             AlgorithmReaderNew algorithmReader = new AlgorithmReaderNew(filepath);
@@ -49,7 +58,8 @@ public class StarterMain {
 
     public static void main(String[] args) throws Exception {
 //        StarterMain starterMain = new StarterMain("templateStrorageTest.xml",false,"perfectapple#",this.stage);
-//        StarterMain starterMain2 = new StarterMain("templateStrorageTest.xml",true,"perfectapple#");
+        StarterMain starterMain2 = new StarterMain("templateStrorageTest.xml",true,"perfectapple#");
+        starterMain2.simpleStart();
     }
 
 }
