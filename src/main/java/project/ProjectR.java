@@ -11,10 +11,10 @@ import java.io.IOException;
 public class ProjectR {
     ProjFile projFile;
     File root;
-    public ProjectR(File projectDirectory) {
-        if (projectDirectory.getName().equals("project.rpro")) {
-            projFile = (ProjFile) Xml.load(projectDirectory, ProjFile.class);
-            projFile.setPath(projectDirectory.getParentFile());
+    public ProjectR(File projectDirectory,boolean create) {
+        if (!create) {
+            projFile = (ProjFile) Xml.load(new File(projectDirectory,"project.rpro"), ProjFile.class);
+            projFile.setPath(projectDirectory);
         } else {
             try {
                 File input = new File(projectDirectory, "Входные данные");
@@ -23,7 +23,7 @@ public class ProjectR {
                 output.mkdir();
                 File test = new File(projectDirectory, "Тестовые данные");
                 test.mkdir();
-                File program = new File(projectDirectory, "Программа.rtran");
+                File program = new File(projectDirectory, "program.rtran");
                 program.createNewFile();
                 projFile = new ProjFile(projectDirectory);
                 Xml.save(new File(projectDirectory, "project.rpro"), projFile);
